@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Text Counter - Bootstrap + JS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+</head>
+<body>
+    
+    
+    <div class="container">
+        
+        <h1 class="h1">Text Counter - Bootstrap + JS</h1>
+
+        <form>
+            <div class="form-group">
+                <textarea class="form-control form-control-lg" rows="4" oninput="inputTxt(this);" id="txtArea"></textarea>
+            </div>
+            <div class="alert alert-primary d-block" id="msg" role="alert">
+                You written <span id="numChar">0</span> and you have <span id="charLimit"></span> characteres left
+            </div>
+            <div class="alert alert-danger d-none" id="alert" role="alert">
+                You got the limit of <span id="charLimit">140</span> characteres.
+            </div>
+        </form>
+
+    </div>
+
+    <div class="container text-left">
+        <div class="badge badge-primary text-wrap" style="width: 6rem;">
+            Made by Lucas Sacheto
+        </div>
+    </div>
+
+<script>
+        
+    //setup
+    var vLimit = 140;
+    document.getElementById("charLimit").innerHTML =  vLimit;
+
+    // main code
+    function inputTxt(vInput){
+
+        vInput.maxLength      =     vLimit;
+        var numContent        =     (vInput.value).length;
+        // console.log((vInput.value).length);
+        
+        document.getElementById("numChar").innerHTML    =   numContent;
+        document.getElementById("charLimit").innerHTML  =   vInput.maxLength-numContent;
+        
+
+        if(vInput.maxLength-numContent == 0){
+            //console.log("DONE");
+            document.getElementById("msg").classList.remove("d-block");
+            document.getElementById("msg").classList.add("d-none");
+            document.getElementById("alert").classList.remove("d-none");
+            document.getElementById("alert").classList.add("d-block");
+        }else{
+            document.getElementById("msg").classList.remove("d-none");
+            document.getElementById("msg").classList.add("d-block");
+            document.getElementById("alert").classList.remove("d-block");
+            document.getElementById("alert").classList.add("d-none");
+        };
+
+    };
+    
+</script>
+
+</body>
+</html>
